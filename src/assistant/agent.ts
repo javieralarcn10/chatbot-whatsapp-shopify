@@ -9,7 +9,6 @@ import { noAiSlopInstructions } from "@/assistant/instructions/no-ai-slop-instru
 import { supermemoryTools } from "@supermemory/tools/ai-sdk";
 import { AiErrorContext, logAiAgentError } from "@/assistant/errors-logging";
 
-
 async function getAtcAgent({ phoneNumber, accountId }: { phoneNumber: string; accountId: string }): Promise<ToolLoopAgent> {
   try {
     return new ToolLoopAgent({
