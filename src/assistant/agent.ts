@@ -5,8 +5,10 @@ import { phoneNumberContext } from "@/assistant/instructions/context-instruction
 import { memoryPrompt } from "@/assistant/instructions/memory-instructions";
 import { whatsappFormat } from "@/assistant/instructions/format-instructions";
 import { shopifyInstructions } from "@/assistant/instructions/shopify-instructions";
+import { noAiSlopInstructions } from "@/assistant/instructions/no-ai-slop-instructions";
 import { supermemoryTools } from "@supermemory/tools/ai-sdk";
 import { AiErrorContext, logAiAgentError } from "@/assistant/errors-logging";
+
 
 async function getAtcAgent({ phoneNumber, accountId }: { phoneNumber: string; accountId: string }): Promise<ToolLoopAgent> {
   try {
@@ -19,7 +21,7 @@ async function getAtcAgent({ phoneNumber, accountId }: { phoneNumber: string; ac
       },
       reasoning: "high",
       stopWhen: isStepCount(10),
-      instructions: `${instructions}\n${shopifyInstructions}\n${memoryPrompt}\n${phoneNumberContext(phoneNumber)}\n${whatsappFormat}`,
+      instructions: `${instructions}\n${shopifyInstructions}\n${memoryPrompt}\n${phoneNumberContext(phoneNumber)}\n${whatsappFormat}\n${noAiSlopInstructions}`,
       tools: {
         ...createShopifyTools(phoneNumber),
         ...supermemoryTools(process.env.SUPERMEMORY_API_KEY!, {
