@@ -83,6 +83,7 @@ Este boilerplate no incluye información de ninguna marca concreta. Para adaptar
 
 | Variable                     | Descripción                                                                                                                                                                |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NODE_ENV`                   | Entorno de ejecución, `development` o `production`                                                                                                             |
 | `PORT`                       | Puerto del servidor (por defecto `3000`)                                                                                                                                   |
 | `APP_URL`                    | URL pública del servicio (QStash llama a `{APP_URL}/qstash/new-message`)                                                                                                   |
 | `ZERNIO_API_KEY`             | API key de Zernio para enviar mensajes y descargar adjuntos                                                                                                                |
@@ -195,10 +196,11 @@ Asegúrate de configurar todas las variables de entorno y de que `APP_URL` apunt
 
 ## Desarrollo local con QStash
 
-1. Instala y arranca el [QStash CLI](https://upstash.com/docs/qstash/howto/local-development).
+1. Instala [QStash CLI](https://upstash.com/docs/qstash/howto/local-development).
 2. Configura `QSTASH_URL=http://127.0.0.1:8080` y las claves de firma que proporcione el CLI.
-3. Expón tu servidor con ngrok: `ngrok http 3001` (o el puerto que uses).
+3. Expón tu servidor con ngrok: `ngrok http 3000` (o el puerto que uses).
 4. Define `APP_URL` con la URL pública de ngrok.
+5. Configura los webhooks de Zernio con la URL pública de ngrok + /zernio/new-message
 
 ## Licencia
 
