@@ -1,0 +1,42 @@
+{
+  "name": "chatbot-whatsapp-shopify",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && tsc-alias -p tsconfig.json --resolve-full-paths",
+    "dev": "tsx watch src/index.ts",
+    "test": "tsx watch test.ts",
+    "start": "node dist/index.js",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "Javier Alarcón Sánchez",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@chat-adapter/state-ioredis": "^4.35.0",
+    "@supermemory/tools": "^2.1.1",
+    "@upstash/qstash": "^2.11.3",
+    "@zernio/chat-sdk-adapter": "^0.4.0",
+    "@zernio/node": "^0.2.430",
+    "ai": "^7.0.40",
+    "chat": "4.35.0",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.10.0",
+    "ioredis": "^5.11.1",
+    "libphonenumber-js": "^1.13.9",
+    "zod": "^4.4.3"
+  },
+  "overrides": {
+    "chat": "4.35.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.5",
+    "prettier": "^3.9.6",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.9.1",
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.3"
+  }
+}

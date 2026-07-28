@@ -1,0 +1,8 @@
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+
+[phases.build]
+cmds = ["npm ci", "npm run build"]
+
+[start]
+cmd = "node dist/index.js"
