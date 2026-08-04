@@ -72,6 +72,7 @@ async function resolveText(message: Message): Promise<string | null> {
 
 bot.onDirectMessage(async (thread, message, channel, context) => {
   const { accountId } = zernioAdapter.decodeThreadId(thread.id);
+  await thread.startTyping()
 
   const skippedText = (
     await Promise.all(
@@ -83,7 +84,9 @@ bot.onDirectMessage(async (thread, message, channel, context) => {
   ).join("");
 
   if (checkIsVideo(message)) {
-    await thread.post("De momento no puedo procesar videos. Por favor envía tu consulta en texto o audio.");
+    const errorMessage = "De momento no puedo procesar videos. Por favor envía tu consulta en texto o audio.";
+    await thread.post(errorMessage);
+    await bot.transcripts.append(thread, { role: "assistant", text: errorMessage }, { userKey: message.userKey! });
     return;
   }
 
@@ -97,6 +100,7 @@ bot.onDirectMessage(async (thread, message, channel, context) => {
           ? "No se pudo analizar el PDF, por favor inténtalo de nuevo o describe tu mensaje en texto."
           : "No se pudo procesar el archivo adjunto, por favor inténtalo de nuevo o escribe tu mensaje en texto.";
     await thread.post(errorMessage);
+    await bot.transcripts.append(thread, { role: "assistant", text: errorMessage }, { userKey: message.userKey! });
     return;
   }
 
